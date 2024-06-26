@@ -1,7 +1,12 @@
 //Dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
+const session = require("express-session");
 require("dotenv").config();
+
+//importing the Routers
+const { AuthRouter } = require("../routes/auth_routes");
 
 //Express App
 const app = express();
@@ -19,7 +24,7 @@ app.use(
 );
 
 //All Routes
-app.use("/api/mail", router);
+app.use("/", AuthRouter);
 
 //handling 404 error
 app.use("*", (req, res, next) => {
